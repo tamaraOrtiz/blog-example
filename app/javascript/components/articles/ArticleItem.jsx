@@ -5,15 +5,19 @@ import {Row, Col, Button} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
-import noImage from 'assets/images/noimage.png'
-import {ARTICLE_EDIT_PATH} from 'routes/RoutePaths'
-import articlePropType from "prop-types/articles";
+import noImage from '~/assets/images/noimage.png'
+import {ARTICLE_EDIT_PATH} from '~/routes/RoutePaths'
+import articlePropType from "~/prop-types/articles";
+import { useDeleteArticle } from '~/hooks/articles'
 
 const ArticleItem = ({article, isEditable}) => {
   const { t } = useTranslation('common')
+  const deleteArticle = useDeleteArticle()
+  
   const handleDelete = useCallback(async () => {
-    console.log('hola')
-  }, [])
+    await deleteArticle(article.id)
+    window.location.reload();
+  }, [article])
 
   return (
     <Col lg={6} md={6}>
@@ -39,7 +43,7 @@ const ArticleItem = ({article, isEditable}) => {
 }
 
 ArticleItem.propTypes = {
-  article: articlePropType,
+  article: articlePropType.isRequired,
   isEditable: PropTypes.bool
 }
 

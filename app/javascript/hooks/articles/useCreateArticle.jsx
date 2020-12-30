@@ -1,31 +1,27 @@
 import { useMemo } from 'react'
 
-import { get } from 'lodash'
-import { mutate } from 'swr'
+import { get, mapKeys, snakeCase } from 'lodash'
 
 import axios from '~/lib/axios'
 
 /**
- * Login
+ * Create article
  *
- * POST /sessions
+ * POST /articles
  */
-const useLogin = () => {
-
+const useUpdateArticle = () => {
   const doPost = useMemo(
-    () => async (email, password) => {
+    () => async (values) => {
+      const snakeKeyValues = mapKeys(values, (_, key) => snakeCase(key))
+    
       try {
-        const response = await axios.post('sessions', {
-          user: {
-            email,
-            password,
+        const response = await axios.post('articles', {
+          article: {
+            ...snakeKeyValues,
           },
         })
 
         const data = get(response, 'data')
-
-        mutate('sessions', data)
-
         return [data, null, response]
       } catch (error) {
         const response = get(error, 'response')
@@ -38,4 +34,4 @@ const useLogin = () => {
   return doPost
 }
 
-export default useLogin
+export default useUpdateArticle

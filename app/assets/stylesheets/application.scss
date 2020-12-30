@@ -13,10 +13,10 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap";
+@import 'bootstrap';
 
-.nav{
-  a{
+.nav {
+  a {
     text-transform: uppercase;
   }
   a:hover {
@@ -28,11 +28,15 @@
   }
 }
 
-.articleImage{
+.articleImage {
   height: 300px;
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+}
+
+.react-datepicker-wrapper {
+  display: block !important;
 }

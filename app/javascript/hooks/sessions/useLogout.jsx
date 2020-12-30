@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { get } from 'lodash'
 import { mutate, cache } from 'swr'
 
-import axios from 'axios'
+import axios from '~/lib/axios'
 
 /**
  * Logout

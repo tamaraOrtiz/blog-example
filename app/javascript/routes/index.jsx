@@ -1,5 +1,7 @@
-import HomePage from 'components/homepage'
-import Login from 'components/login'
+import HomePage from '~/components/homepage'
+import Login from '~/components/login'
+import EditArticle from '~/components/articles/EditArticle'
+import NewArticle from '~/components/articles/NewArticle'
 
 import RoutePaths from './RoutePaths'
 
@@ -15,17 +17,17 @@ const Routes = Object.freeze({
   },
   NEW_ARTICLE: {
     path: RoutePaths.NEW_ARTICLE,
-    exact: false,
-    component: HomePage,
+    exact: true,
+    component: NewArticle,
   },
   EDIT_ARTICLE: {
     path: RoutePaths.EDIT_ARTICLE,
-    exact: true,
-    component: HomePage,
+    exact: false,
+    component: EditArticle,
   },
   SHOW_ARTICLE: {
     path: RoutePaths.SHOW_ARTICLE,
-    exact: true,
+    exact: false,
     component: HomePage,
   },
   HOME: {

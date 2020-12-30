@@ -8,7 +8,7 @@
 
 
 article = Article.find_or_initialize_by(title: 'Test')
-article.assign_attributes(comment: 'new comment', published_at: Time.now, description: 'Test description')
+article.assign_attributes(content: 'new content', published_at: Time.now, description: 'Test description')
 article.save! if article.new_record?
 
 admin_user = User.find_or_initialize_by(email: "test@email.com")

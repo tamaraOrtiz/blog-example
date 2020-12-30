@@ -10,7 +10,11 @@ Rails.application.routes.draw do
     delete 'sessions', to: 'sessions#destroy', defaults: {format: :json}
   end
 
-  resources :articles, only: %i[index], defaults: { format: :json }
+  resources :articles, only: %i[index show update create destroy remote_index], defaults: { format: :json } do
+    collection do
+      get 'remote_index', to: 'articles#remote_index'
+    end
+  end
 
   # Forward all requests to HomeController#index
   # but the requests must be non-Ajax (!req.xhr?) and HTML Mime type (req.format.html?)

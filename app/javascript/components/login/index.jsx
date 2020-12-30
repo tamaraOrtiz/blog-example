@@ -5,9 +5,9 @@ import {useTranslation} from "react-i18next";
 import {Link, useHistory} from "react-router-dom";
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
-import { useLogin } from 'hooks/sessions'
-import TextField from 'components/TextField'
-import { LoginSchema } from 'validators'
+import { useLogin } from '~/hooks/sessions'
+import TextField from '~/components/TextField'
+import { LoginSchema } from '~/validators'
 
 
 const Login = () => {
@@ -59,7 +59,7 @@ const Login = () => {
             />
 
             <Button type="submit" disabled={isSubmitting} >
-              {t(isSubmitting ? 'signingIn' : 'signIn')}
+              {t(isSubmitting ? 'login:signingIn' : 'login:signIn')}
             </Button>
           </Form>
         </Col>

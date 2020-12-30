@@ -9,13 +9,9 @@ import { get } from 'lodash'
  *
  */
 const useRemoteArticles = () => {
-  const { data, error, mutate } = useSWR(`${process.env.REMOTE_ARTICLES_URL}&pageSize=${process.env.ARTICLE_PAGE_SIZE}&apiKey=${process.env.REMOTE_ARTICLES_API_KEY}`)
+  const { data, error, mutate } = useSWR('articles/remote_index')
 
-  const articles = useMemo(() => get(data, 'articles', []), [
-    data,
-  ])
-
-  return { data: articles, loading: !error && !data, error, mutate }
+  return { data: data, loading: !error && !data, error, mutate }
 }
 
 export default useRemoteArticles

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import useSWR from 'swr'
 
-import { Roles } from '../../constants'
+import { Roles } from '~/constants'
 
 /**
  * Retrieve the current logged in user data

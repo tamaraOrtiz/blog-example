@@ -6,6 +6,8 @@ ruby '2.6.0'
 
 gem 'active_model_serializers'
 gem 'devise'
+gem 'interactor', '~> 3.0'
+gem 'news-api'
 gem 'pg', '1.1.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0'
@@ -31,10 +33,10 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'carrierwave', '~> 2.0'
+gem 'pundit'
 gem 'rails_best_practices'
 gem 'rolify'
 gem 'rubocop-rails', require: false
-gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
