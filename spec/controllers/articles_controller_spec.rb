@@ -1,12 +1,13 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 require 'news-api'
 
 RSpec.describe ArticlesController, type: :controller do
   let!(:article) { FactoryBot.create(:article) }
-  let!(:role) { FactoryBot.create(:role) }
   let!(:page) { 1 }
-  let(:user) { FactoryBot.create(:user, roles: [role]) }
+  let(:new_instance) { instance_double(News) }
+  let(:user) { FactoryBot.create(:admin_user) }
 
   describe 'index' do
     context 'with logged user' do
@@ -84,8 +85,9 @@ RSpec.describe ArticlesController, type: :controller do
 
   describe 'remote_index' do
     before do
-      allow_any_instance_of(News).to receive(:get_everything).with(q: 'watches', pageSize: '20', page: page.to_s)
-                                                             .and_return(Article.all)
+      allow(News).to receive(:new).and_return(new_instance)
+      allow(new_instance).to receive(:get_everything).with(q: 'watches', pageSize: '20', page: page.to_s)
+                                                     .and_return(Article.all)
     end
 
     context 'with logged user' do

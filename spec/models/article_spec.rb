@@ -10,6 +10,6 @@ RSpec.describe Article, type: :model do
   describe 'validate_uniqueness_of title' do
     subject { FactoryBot.build(:article) }
 
-    it { is_expected.to validate_uniqueness_of(:title)}
+    it { is_expected.to validate_uniqueness_of(:title) }
   end
 end
