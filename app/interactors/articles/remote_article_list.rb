@@ -19,7 +19,7 @@ module Articles
     private
 
     def page
-      context.page ||= 1
+      context.page ||= '1'
     end
 
     def page_size

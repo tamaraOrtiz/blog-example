@@ -1,8 +1,11 @@
+# frozen_string_literal: true
 require 'rails_helper'
+require 'news-api'
 
 RSpec.describe ArticlesController, type: :controller do
   let!(:article) { FactoryBot.create(:article) }
   let!(:role) { FactoryBot.create(:role) }
+  let!(:page) { 1 }
   let(:user) { FactoryBot.create(:user, roles: [role]) }
 
   describe 'index' do
@@ -79,12 +82,88 @@ RSpec.describe ArticlesController, type: :controller do
     end
   end
 
+  describe 'remote_index' do
+    before do
+      allow_any_instance_of(News).to receive(:get_everything).with(q: 'watches', pageSize: '20', page: "#{page}")
+                                                             .and_return(Article.all)
+    end
+
+    context 'with logged user' do
+      before do
+        login_user
+        get :remote_index, format: 'json'
+      end
+
+      it 'has http status success' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'renders article' do
+        data = JSON.parse(response.body).first
+        expect(data['id']).to eq(article.id)
+        expect(data['title']).to eq(article.title)
+        expect(data['content']).to eq(article.content)
+        expect(data['description']).to eq(article.description)
+      end
+    end
+
+    context 'with page param 1' do
+      before do
+        login_user
+        get :remote_index, params: { page: 1 }, format: 'json'
+      end
+
+      it 'has http status success' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'renders article' do
+        data = JSON.parse(response.body).first
+        expect(data['id']).to eq(article.id)
+        expect(data['title']).to eq(article.title)
+        expect(data['content']).to eq(article.content)
+        expect(data['description']).to eq(article.description)
+      end
+    end
+
+    context 'with page param 2' do
+      let(:page) { 2 }
+
+      before do
+        login_user
+        get :remote_index, params: { page: 2 }, format: 'json'
+      end
+
+      it 'has http status success' do
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    context 'without logged user' do
+      before do
+        get :remote_index, format: 'json'
+      end
+
+      it 'has http status success' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'renders article' do
+        data = JSON.parse(response.body).first
+        expect(data['id']).to eq(article.id)
+        expect(data['title']).to eq(article.title)
+        expect(data['content']).to eq(article.content)
+        expect(data['description']).to eq(article.description)
+      end
+    end
+  end
+
   describe 'create' do
-    let(:article_params) {
+    let(:article_params) do
       { title: 'Test',
         description: 'description',
         published_at: '2019-11-29T19:34:04.174Z' }
-    }
+    end
 
     context 'with logged user' do
       before do
@@ -120,16 +199,16 @@ RSpec.describe ArticlesController, type: :controller do
   end
 
   describe 'update' do
-    let(:article_params) {
+    let(:article_params) do
       { title: 'Test Update',
         description: 'description',
         published_at: '2019-10-29T19:34:04.174Z' }
-    }
+    end
 
     context 'with logged user' do
       before do
         login_user
-        put :update, params: { id: article.id, article: article_params }
+        put :update, params: { id: article.id, article: article_params }, format: 'json'
       end
 
       it 'responds with status success' do
@@ -143,15 +222,16 @@ RSpec.describe ArticlesController, type: :controller do
       it 'updates article with attributes' do
         data = JSON.parse(response.body)
         article.reload
+        date = DateTime.parse(data['publishedAt'])
         expect(data['id']).to eq(article.id)
         expect(data['title']).to eq(article.title)
-        expect(data['publishedAt']).to eq(article.published_at.to_s)
+        expect(date.strftime('%c')).to eq(article.published_at.strftime('%c'))
       end
     end
 
     context 'without logged user' do
       before do
-        put :update, params: { id: article.id, article: article_params }
+        put :update, params: { id: article.id, article: article_params }, format: 'json'
       end
 
       it 'responds with status unauthorized' do
