@@ -84,7 +84,7 @@ RSpec.describe ArticlesController, type: :controller do
 
   describe 'remote_index' do
     before do
-      allow_any_instance_of(News).to receive(:get_everything).with(q: 'watches', pageSize: '20', page: "#{page}")
+      allow_any_instance_of(News).to receive(:get_everything).with(q: 'watches', pageSize: '20', page: page.to_s)
                                                              .and_return(Article.all)
     end
 
