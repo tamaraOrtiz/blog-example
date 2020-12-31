@@ -1,10 +1,11 @@
 import React, {useCallback}  from 'react'
+
 import { isEmpty } from 'lodash'
 import {useParams} from 'react-router-dom';
 
-import articlePropType from '~/prop-types/articles';
-import ArticleForm from './ArticleForm';
 import { useArticle, useUpdateArticle } from '~/hooks/articles'
+
+import ArticleForm from './ArticleForm';
 
 
 const EditArticle = () => {
@@ -13,10 +14,10 @@ const EditArticle = () => {
 
   const updateArticle = useUpdateArticle()
   
-  const handleSubmit = useCallback(async (values) => {
+  const handleSubmit = useCallback(async values => {
     const [, error] = await updateArticle(article.id, values)
     return error
-  }, [article])
+  }, [article, updateArticle])
 
   if (isEmpty(article)) {
     return null
@@ -26,10 +27,5 @@ const EditArticle = () => {
     <ArticleForm article={article} onSubmit={handleSubmit} />
   )
 }
-
-EditArticle.propTypes = {
-  article: articlePropType
-}
-
 
 export default EditArticle

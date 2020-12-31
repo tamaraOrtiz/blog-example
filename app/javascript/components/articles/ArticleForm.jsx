@@ -1,17 +1,18 @@
 import React, {useCallback, useMemo} from 'react'
+
 import { useFormik } from 'formik'
 import { map, get } from 'lodash'
-import {useTranslation} from 'react-i18next';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types'
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import {useTranslation} from 'react-i18next';
 
-import {ArticleSchema} from '~/validators'
-import articlePropType from '~/prop-types/articles';
-import TextField from '~/components/TextField'
-import TextArea from '~/components/TextArea'
-import FileInput from '~/components/FileInput'
-import DateInput from '~/components/DateInput'
 import noImage from '~/assets/images/noimage.png'
+import DateInput from '~/components/DateInput'
+import FileInput from '~/components/FileInput'
+import TextArea from '~/components/TextArea'
+import TextField from '~/components/TextField'
+import articlePropType from '~/prop-types/articles';
+import {ArticleSchema} from '~/validators'
 
 const ArticleForm = ({article, onSubmit}) => {
   const publishedAt = useMemo(()=> (article?.publishedAt ? new Date(article?.publishedAt) : new Date()),[article]);
@@ -22,16 +23,16 @@ const ArticleForm = ({article, onSubmit}) => {
       title: article?.title || '',
       description: article?.description || '',
       content: article?.content || '',
-      publishedAt: publishedAt,
+      publishedAt,
       image: null,
       urlToImage: article?.urlToImage || null,
     },
     enableReinitialize: true,
     validationSchema: ArticleSchema,
-    onSubmit: async values => {
-      const errors = await onSubmit(values)
-      if (errors) {
-        map(get(errors, 'errors'), (value, key) => {
+    onSubmit: async newValues => {
+      const responseErrors = await onSubmit(newValues)
+      if (responseErrors) {
+        map(get(responseErrors, 'errors'), (value, key) => {
           setFieldError(key, value)})
       }
     },
@@ -70,8 +71,8 @@ const ArticleForm = ({article, onSubmit}) => {
           <h3>{article?.id ? t('article:edit:title') : t('article:new:title') }</h3>
         </Col>
         <Col lg={6} md={6} className='articleImage'>
-          {values.urlToImage && (<img src={values.urlToImage} alt={values.title}/>)}
-          {!values.urlToImage && (<img src={noImage}/>)}
+          {values.urlToImage && (<img src={values.urlToImage} alt={values.title} />)}
+          {!values.urlToImage && (<img src={noImage} alt={values.title} />)}
         </Col>
         <Col lg={6} md={6}>
           <Form onSubmit={handleSubmit}>
@@ -115,7 +116,7 @@ const ArticleForm = ({article, onSubmit}) => {
               onChange={handleFileUpload}
             />
 
-            <Button type='submit' className='text-right' disabled={isSubmitting} >
+            <Button type='submit' className='text-right' disabled={isSubmitting}>
               {t(isSubmitting ? 'common:processing' : 'common:save')}
             </Button>
           </Form>

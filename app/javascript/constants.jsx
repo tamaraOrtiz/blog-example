@@ -16,9 +16,7 @@ const checkRole = (value, role) => {
 
 export const Roles = Object.freeze({
   admin: ROLE_ADMIN,
-  isAdmin: role => {
-    return checkRole(role, ROLE_ADMIN)
-  }
+  isAdmin: role => checkRole(role, ROLE_ADMIN)
 })
 
 /**

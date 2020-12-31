@@ -1,4 +1,5 @@
 import React, {useCallback} from 'react'
+
 import { map } from 'lodash'
 import PropTypes from 'prop-types'
 import {useTranslation} from 'react-i18next';
@@ -11,20 +12,20 @@ const ArticleList = ({articles, isEditable, setCurrentPage}) => {
 
   const onMoreArticles = useCallback(() => {
     setTimeout(() => {
-      setCurrentPage(currentPage => parseInt(currentPage)+1)
+      setCurrentPage(currentPage => parseInt(currentPage, 10)+1)
     }, 1500);
   }, [setCurrentPage])
 
   return (
     <div className='row'>
       <InfiniteScroll
-          dataLength={articles.length}
-          next={onMoreArticles}
-          hasMore={true}
-          loader={<h4>{t('loading')}</h4>}
-        >
-          {map(articles, (article, index) => (
-            <ArticleItem key={index} article={article} isEditable={isEditable}/>
+        dataLength={articles.length}
+        next={onMoreArticles}
+        hasMore
+        loader={<h4>{t('loading')}</h4>}
+      >
+        {map(articles, (article, index) => (
+          <ArticleItem key={index} article={article} isEditable={isEditable} />
             )
           )}
       </InfiniteScroll>

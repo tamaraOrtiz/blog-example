@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react'
+
+import PropTypes from 'prop-types'
+import { FormGroup, FormLabel, FormText } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
  
 import 'react-datepicker/dist/react-datepicker.css';
-
-import PropTypes from 'prop-types'
-import { FormGroup, FormLabel } from 'react-bootstrap';
 
 const DateInput = forwardRef(
   (
@@ -14,21 +14,18 @@ const DateInput = forwardRef(
       value,
       placeholder,
       ...props
-    },
-    ref
-  ) => {
-    return (
-      <FormGroup>
-        <FormLabel>{label}</FormLabel>
-        <DatePicker className='form-control' selected={value} placeholder={placeholder} {...props}/>
-        {error && (
-          <FormText className='text-danger'>
-            {error}
-          </FormText>
+    }
+  ) => (
+    <FormGroup>
+      <FormLabel>{label}</FormLabel>
+      <DatePicker className='form-control' selected={value} placeholder={placeholder} {...props} />
+      {error && (
+      <FormText className='text-danger'>
+        {error}
+      </FormText>
         )}
-      </FormGroup>
+    </FormGroup>
     )
-  }
 )
 
 DateInput.propTypes = {
@@ -42,6 +39,7 @@ DateInput.defaultProps = {
   label: undefined,
   placeholder: undefined,
   error: undefined,
+  value: () => new Date()
 }
 
 export default DateInput

@@ -2,7 +2,7 @@
 
 class ArticlesController < ApplicationController
   include FileBase64
-  skip_before_action :authenticate_user!, only: %i[index]
+  skip_before_action :authenticate_user!, only: %i[index remote_index]
 
   def remote_index
     authorize(Article)

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     delete 'sessions', to: 'sessions#destroy', defaults: {format: :json}
   end
 
-  resources :articles, only: %i[index show update create destroy remote_index], defaults: { format: :json } do
+  resources :articles, only: %i[index update create destroy remote_index], defaults: { format: :json } do
     collection do
       get 'remote_index', to: 'articles#remote_index'
     end

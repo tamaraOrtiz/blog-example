@@ -1,14 +1,15 @@
 import React from 'react'
+
 import { useFormik } from 'formik'
 import { get } from 'lodash'
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import {useTranslation} from 'react-i18next';
 import {Link, useHistory} from 'react-router-dom';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
-import { useLogin } from '~/hooks/sessions'
 import TextField from '~/components/TextField'
-import { LoginSchema } from '~/validators'
+import { useLogin } from '~/hooks/sessions'
 import {HOME_PATH} from '~/routes/RoutePaths'
+import { LoginSchema } from '~/validators'
 
 
 const Login = () => {
@@ -59,7 +60,7 @@ const Login = () => {
               onChange={handleChange}
             />
 
-            <Button type='submit' disabled={isSubmitting} >
+            <Button type='submit' disabled={isSubmitting}>
               {t(isSubmitting ? 'login:signingIn' : 'login:signIn')}
             </Button>
           </Form>

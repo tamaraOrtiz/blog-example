@@ -1,9 +1,11 @@
-import React, {useState, useCallback} from 'react'
+import React, {useState} from 'react'
+
 import {get} from 'lodash';
 import { Spinner } from 'react-bootstrap';
 
 import { useLocalArticles, useArticleList } from '~/hooks/articles'
 import userPropType from '~/prop-types/users';
+
 import ArticleList from './ArticleList';
 
 const LocalArticleList = ({currentUser}) => {
@@ -15,7 +17,7 @@ const LocalArticleList = ({currentUser}) => {
   return (
     <> 
       {loading && (<Spinner animation='border' />)}
-      <ArticleList articles={articleList} isEditable={isAdmin} setCurrentPage={setCurrentPage}/>
+      <ArticleList articles={articleList} isEditable={isAdmin} setCurrentPage={setCurrentPage} />
     </>
   )
 }

@@ -11,8 +11,7 @@ module.exports = {
     'airbnb',
     'airbnb/hooks',
     'plugin:react/recommended',
-    'prettier',
-    'prettier/react',
+    'prettier'
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -21,7 +20,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks', 'prettier'],
+  plugins: ['react', 'react-hooks'],
   rules: {
     'import/order': [
       WARNING,
@@ -65,6 +64,5 @@ module.exports = {
     'no-alert': OFF, // Temporarily disabled
     'no-console': WARNING,
     'jsx-a11y/anchor-is-valid': OFF,
-    'json/*': ['error', 'allowComments'],
   },
 };

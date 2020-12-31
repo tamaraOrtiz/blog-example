@@ -1,7 +1,9 @@
-import React, {useState, useCallback} from 'react'
+import React, {useState} from 'react'
+
 import { Spinner } from 'react-bootstrap';
 
 import { useRemoteArticles, useArticleList } from '~/hooks/articles'
+
 import ArticleList from './ArticleList';
 
 const RemoteArticleList = () => {
@@ -12,7 +14,7 @@ const RemoteArticleList = () => {
   return (
     <> 
       {loading && (<Spinner animation='border' />)}
-      <ArticleList articles={articleList} setCurrentPage={setCurrentPage}/>
+      <ArticleList articles={articleList} setCurrentPage={setCurrentPage} />
     </>
   )
 }

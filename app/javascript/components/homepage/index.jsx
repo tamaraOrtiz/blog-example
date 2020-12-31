@@ -1,12 +1,14 @@
 import React, {useMemo} from 'react'
-import {useHistory, useParams} from 'react-router-dom';
 
-import RemoteArticleList from '~/components/articles/RemoteArticleList';
-import LocalArticleList from '~/components/articles/LocalArticleList';
+import {useParams} from 'react-router-dom';
+
 import ArticleDetails from '~/components/articles/ArticleDetails';
-import { useCurrentUser } from '~/hooks/sessions'
-import { useArticleContext } from '~/hooks/context'
+import LocalArticleList from '~/components/articles/LocalArticleList';
+import RemoteArticleList from '~/components/articles/RemoteArticleList';
 import {PostTypes} from '~/constants'
+import { useArticleContext } from '~/hooks/context'
+import { useCurrentUser } from '~/hooks/sessions'
+
 import Header from './Header';
 
 const HomePage = () => {
@@ -25,12 +27,13 @@ const HomePage = () => {
 
   return (
     <>
-      <Header isRemote={isRemote} isLocal={isLocal}/>
+      <Header isRemote={isRemote} isLocal={isLocal} />
       <main className='container'>
-        {isRemote && (<RemoteArticleList/>)}
-        {isLocal && (<LocalArticleList currentUser={currentUser}/>)}
+        {isRemote && (<RemoteArticleList />)}
+        {isLocal && (<LocalArticleList currentUser={currentUser} />)}
         {isSeePost && article && (<ArticleDetails article={article} />)}
       </main>
-    </>)
+    </>
+)
 }
 export default HomePage
