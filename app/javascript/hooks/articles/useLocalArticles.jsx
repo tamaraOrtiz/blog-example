@@ -6,8 +6,8 @@ import useSWR from 'swr'
  * GET /articles
  *
  */
-const useLocalArticles = () => {
-  const { data, error, mutate } = useSWR('articles')
+const useLocalArticles = (page) => {
+  const { data, error, mutate } = useSWR(`articles?page=${page}`)
 
   return { data, loading: !error && !data, error, mutate }
 }

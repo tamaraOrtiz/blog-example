@@ -12,7 +12,9 @@ const useDeleteArticle = () => {
   const doDelete = useMemo(
     () => async (articleId) => {
       try {
-        await axios.delete(`articles/${articleId}`)
+        const response = await axios.delete(`articles/${articleId}`)
+        const data = get(response, 'data')
+        return [data, null, response]
       } catch (error) {
         const response = get(error, 'response')
         return [null, response.data, response]

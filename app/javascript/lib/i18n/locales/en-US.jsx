@@ -41,7 +41,8 @@ export default {
     edit: 'Edit',
     delete: 'Remove',
     processing: 'Processing..',
-    save: 'Save'
+    save: 'Save',
+    loading: 'Loading..',
   },
   article: {
     edit: {

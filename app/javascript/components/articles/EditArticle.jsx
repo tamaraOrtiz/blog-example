@@ -14,7 +14,8 @@ const EditArticle = () => {
   const updateArticle = useUpdateArticle()
   
   const handleSubmit = useCallback(async (values) => {
-    await updateArticle(article.id, values)
+    const [, error] = await updateArticle(article.id, values)
+    return error
   }, [article])
 
   if (isEmpty(article)) {

@@ -2,19 +2,20 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 import {HOME_PATH} from '~/routes/RoutePaths'
+import {PostTypes} from '~/constants'
 
-const Header = ({isRemote}) => {
+const Header = ({isRemote, isLocal}) => {
   const { t } = useTranslation()
 
   return (
     <Container>
       <div className="nav-scroller py-1 mb-2">
         <nav className="nav d-flex justify-content-between">
-          <Link to={`${HOME_PATH}local`} className={`p-2 link-secondary ${!isRemote ? 'active' : ''}`}>{t('post:local')}</Link>
-          <Link to={`${HOME_PATH}remote`} className={`p-2 link-secondary ${isRemote ? 'active' : ''}`}>{t('post:remote')}</Link>
+          <Link to={`${HOME_PATH}${PostTypes.local}`} className={`p-2 link-secondary ${isLocal ? 'active' : ''}`}>{t('post:local')}</Link>
+          <Link to={`${HOME_PATH}${PostTypes.remote}`} className={`p-2 link-secondary ${isRemote ? 'active' : ''}`}>{t('post:remote')}</Link>
         </nav>
       </div>
     </Container>
@@ -22,11 +23,13 @@ const Header = ({isRemote}) => {
 }
 
 Header.propTypes = {
-  isRemote: PropTypes.bool
+  isRemote: PropTypes.bool,
+  isLocal: PropTypes.bool
 }
 
 Header.defaultProps = {
-  isRemote: false
+  isRemote: false,
+  isLocal: true
 }
 
 export default Header

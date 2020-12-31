@@ -1,6 +1,6 @@
 import React, {useCallback, useMemo} from 'react'
 import { useFormik } from 'formik'
-import { isNil } from 'lodash'
+import { map, get } from 'lodash'
 import {useTranslation} from "react-i18next";
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types'
@@ -16,7 +16,7 @@ import noImage from '~/assets/images/noimage.png'
 const ArticleForm = ({article, onSubmit}) => {
   const publishedAt = useMemo(()=> (article?.publishedAt ? new Date(article?.publishedAt) : new Date()),[article]);
   const { t } = useTranslation(['article', 'common'])
-  const formik = useFormik({
+  const { values, errors, handleChange, handleSubmit, isSubmitting, setFieldValue, setFieldError } = useFormik({
     initialValues: {
       id: article?.id || null,
       title: article?.title || '',
@@ -29,11 +29,13 @@ const ArticleForm = ({article, onSubmit}) => {
     enableReinitialize: true,
     validationSchema: ArticleSchema,
     onSubmit: async values => {
-      await onSubmit(values)
+      const errors = await onSubmit(values)
+      if (errors) {
+        map(get(errors, 'errors'), (value, key) => {
+          setFieldError(key, value)})
+      }
     },
   })
-
-  const { values, errors, handleChange, handleSubmit, isSubmitting, setFieldValue } = formik
 
   const handleDateChange = useCallback(value => {
     setFieldValue('publishedAt', value)

@@ -10,12 +10,13 @@ const NewArticle = () => {
   const history = useHistory()
 
   const handleSubmit = useCallback(async (values) => {
-    const [data] = await createArticle(values)
+    const [data, error] = await createArticle(values)
     if (data) {
       history.replace(HOME_PATH)
     }
+    return error
   }, [])
-  
+
   return (
     <ArticleForm onSubmit={handleSubmit}/>
   )

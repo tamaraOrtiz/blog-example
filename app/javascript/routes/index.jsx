@@ -25,11 +25,6 @@ const Routes = Object.freeze({
     exact: false,
     component: EditArticle,
   },
-  SHOW_ARTICLE: {
-    path: RoutePaths.SHOW_ARTICLE,
-    exact: false,
-    component: HomePage,
-  },
   HOME: {
     path: RoutePaths.HOME,
     exact: false,

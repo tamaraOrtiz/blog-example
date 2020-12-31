@@ -8,6 +8,7 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useLogin } from '~/hooks/sessions'
 import TextField from '~/components/TextField'
 import { LoginSchema } from '~/validators'
+import {HOME_PATH} from '~/routes/RoutePaths'
 
 
 const Login = () => {
@@ -28,7 +29,7 @@ const Login = () => {
         setFieldError('email', get(error, 'error'))
         return
       }
-      history.replace('/')
+      history.replace(HOME_PATH)
     },
   })
 

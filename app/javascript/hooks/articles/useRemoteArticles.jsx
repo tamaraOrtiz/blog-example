@@ -8,8 +8,8 @@ import { get } from 'lodash'
  * GET [REMOTE_ARTICLES_URL]
  *
  */
-const useRemoteArticles = () => {
-  const { data, error, mutate } = useSWR('articles/remote_index')
+const useRemoteArticles = (page) => {
+  const { data, error, mutate } = useSWR(`articles/remote_index?page=${page}`)
 
   return { data: data, loading: !error && !data, error, mutate }
 }

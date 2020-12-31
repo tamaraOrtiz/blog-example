@@ -21,7 +21,21 @@ export const Roles = Object.freeze({
   }
 })
 
+/**
+ * Post types
+ */
+
+const LOCAL_POST = 'local'
+const REMOTE_POST = 'remote'
+const SEE_POST = 'see_post'
+
+export const PostTypes = Object.freeze({
+  local: LOCAL_POST,
+  remote: REMOTE_POST,
+  see_post: SEE_POST
+})
 
 export default {
   Roles,
+  PostTypes
 }
