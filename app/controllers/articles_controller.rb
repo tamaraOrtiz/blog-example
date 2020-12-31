@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ArticlesController < ApplicationController
   include FileBase64
   skip_before_action :authenticate_user!, only: %i[index]
@@ -35,7 +37,7 @@ class ArticlesController < ApplicationController
 
     filename = params.dig(:article, :image, :filename)
     data = params.dig(:article, :image, :data)
-    content_type, _encoding, content = extract(data)
+    _content_type, _encoding, content = extract(data)
     Tempfile.create(filename) do |tempfile|
       tempfile.write(content)
       tempfile.rewind

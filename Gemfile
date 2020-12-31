@@ -1,5 +1,7 @@
 # frozen_string_literal: true
+
 source 'https://rubygems.org'
+
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.0'
@@ -33,10 +35,12 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'carrierwave', '~> 2.0'
+gem 'kaminari'
 gem 'pundit'
 gem 'rails_best_practices'
 gem 'rolify'
 gem 'rubocop-rails', require: false
+gem 'rubocop-rspec', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -44,6 +48,10 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_bot_rails', '5.1.1'
   gem 'faker', '2.6.0'
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    # Previously '4-0-dev' or '4-0-maintenance' branch
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
+  end
 end
 
 group :development do
@@ -64,6 +72,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'shoulda-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

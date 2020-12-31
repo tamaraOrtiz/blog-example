@@ -1,9 +1,9 @@
 import React, {useCallback}  from 'react'
 import { isEmpty } from 'lodash'
-import {useParams} from "react-router-dom";
+import {useParams} from 'react-router-dom';
 
-import articlePropType from "~/prop-types/articles";
-import ArticleForm from "./ArticleForm";
+import articlePropType from '~/prop-types/articles';
+import ArticleForm from './ArticleForm';
 import { useArticle, useUpdateArticle } from '~/hooks/articles'
 
 

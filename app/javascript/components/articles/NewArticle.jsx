@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react'
-import {useHistory} from "react-router-dom";
+import {useHistory} from 'react-router-dom';
 
-import ArticleForm from "./ArticleForm";
+import ArticleForm from './ArticleForm';
 import { useCreateArticle } from '~/hooks/articles'
 import {HOME_PATH} from '~/routes/RoutePaths'
 

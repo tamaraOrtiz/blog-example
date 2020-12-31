@@ -6,6 +6,7 @@ module BaseBehavior
 
   def index
     records = policy_scope(resources)
+    records = records.page(params[:page]).per(page_size)
     render json: records,
            each_serializer: serializer,
            include: index_include,
@@ -42,12 +43,16 @@ module BaseBehavior
     raise NotImplementedError
   end
 
+  def page_size
+    ENV['PAGE_SIZE']
+  end
+
   def resource
-    @_resource ||= if params[:id]
-                     find_resource
-                   else
-                     initialize_resource
-                   end
+    @resource ||= if params[:id]
+                    find_resource
+                  else
+                    initialize_resource
+                  end
   end
 
   def resource_params

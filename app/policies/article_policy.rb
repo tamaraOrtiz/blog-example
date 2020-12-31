@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 class ArticlePolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     def resolve
-      return scope.all
+      scope.all
     end
   end
 

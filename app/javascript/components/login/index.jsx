@@ -1,8 +1,8 @@
 import React from 'react'
 import { useFormik } from 'formik'
 import { get } from 'lodash'
-import {useTranslation} from "react-i18next";
-import {Link, useHistory} from "react-router-dom";
+import {useTranslation} from 'react-i18next';
+import {Link, useHistory} from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
 import { useLogin } from '~/hooks/sessions'
@@ -34,32 +34,32 @@ const Login = () => {
   })
 
   return (
-    <Container className="pt-5">
-      <Row className="justify-content-md-center">
+    <Container className='pt-5'>
+      <Row className='justify-content-md-center'>
         <Col lg={6} md={6}>
-          <h2 className='text-center pt-5'><Link to="/" className="text-dark">{t('homePage:title')}</Link></h2>
+          <h2 className='text-center pt-5'><Link to='/' className='text-dark'>{t('homePage:title')}</Link></h2>
           <Form onSubmit={handleSubmit}>
             <TextField
               label={t('login:email.label')}
-              type="email"
+              type='email'
               placeholder={t('login:email.placeholder')}
-              name="email"
+              name='email'
               value={values.email}
               error={t(errors.email)}
               onChange={handleChange}
             />
             <TextField
-              id="password"
+              id='password'
               label={t('login:password.label')}
-              type="password"
+              type='password'
               placeholder={t('login:password.placeholder')}
-              name="password"
+              name='password'
               error={t(errors.password)}
               value={values.password}
               onChange={handleChange}
             />
 
-            <Button type="submit" disabled={isSubmitting} >
+            <Button type='submit' disabled={isSubmitting} >
               {t(isSubmitting ? 'login:signingIn' : 'login:signIn')}
             </Button>
           </Form>

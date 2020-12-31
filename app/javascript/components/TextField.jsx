@@ -19,7 +19,7 @@ const TextField = forwardRef(
         <FormLabel>{label}</FormLabel>
         <FormControl type={type} placeholder={placeholder} {...props}/>
         {error && (
-          <FormText className="text-danger">
+          <FormText className='text-danger'>
             {error}
           </FormText>
         )}

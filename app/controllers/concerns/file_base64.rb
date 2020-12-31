@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module FileBase64
   extend ActiveSupport::Concern
 

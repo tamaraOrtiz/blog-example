@@ -27,5 +27,4 @@ class SessionsController < Devise::SessionsController
   def respond_with(resource, _opts = {})
     render json: resource, serializer: UserSerializer
   end
-
 end

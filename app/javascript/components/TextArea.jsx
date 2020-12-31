@@ -17,9 +17,9 @@ const TextArea = forwardRef(
     return (
       <FormGroup>
         <FormLabel>{label}</FormLabel>
-        <FormControl as="textarea" rows={rows} placeholder={placeholder} {...props}/>
+        <FormControl as='textarea' rows={rows} placeholder={placeholder} {...props}/>
         {error && (
-          <FormText className="text-danger">
+          <FormText className='text-danger'>
             {error}
           </FormText>
         )}

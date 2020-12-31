@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
-import DatePicker from "react-datepicker";
+import DatePicker from 'react-datepicker';
  
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
 
 import PropTypes from 'prop-types'
 import { FormGroup, FormLabel } from 'react-bootstrap';
@@ -20,9 +20,9 @@ const DateInput = forwardRef(
     return (
       <FormGroup>
         <FormLabel>{label}</FormLabel>
-        <DatePicker className="form-control" selected={value} placeholder={placeholder} {...props}/>
+        <DatePicker className='form-control' selected={value} placeholder={placeholder} {...props}/>
         {error && (
-          <FormText className="text-danger">
+          <FormText className='text-danger'>
             {error}
           </FormText>
         )}

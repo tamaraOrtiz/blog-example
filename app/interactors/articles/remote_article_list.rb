@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'news-api'
 
 module Articles
@@ -22,7 +23,7 @@ module Articles
     end
 
     def page_size
-      ENV['ARTICLE_PAGE_SIZE']
+      ENV['PAGE_SIZE']
     end
 
     def keyword

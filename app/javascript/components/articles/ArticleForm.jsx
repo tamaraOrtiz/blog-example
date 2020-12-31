@@ -1,12 +1,12 @@
 import React, {useCallback, useMemo} from 'react'
 import { useFormik } from 'formik'
 import { map, get } from 'lodash'
-import {useTranslation} from "react-i18next";
+import {useTranslation} from 'react-i18next';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types'
 
 import {ArticleSchema} from '~/validators'
-import articlePropType from "~/prop-types/articles";
+import articlePropType from '~/prop-types/articles';
 import TextField from '~/components/TextField'
 import TextArea from '~/components/TextArea'
 import FileInput from '~/components/FileInput'
@@ -64,12 +64,12 @@ const ArticleForm = ({article, onSubmit}) => {
   }, [setFieldValue])
   
   return (
-    <Container className="pt-5">
+    <Container className='pt-5'>
       <Row>
         <Col lg={12} md={12}>
           <h3>{article?.id ? t('article:edit:title') : t('article:new:title') }</h3>
         </Col>
-        <Col lg={6} md={6} className="articleImage">
+        <Col lg={6} md={6} className='articleImage'>
           {values.urlToImage && (<img src={values.urlToImage} alt={values.title}/>)}
           {!values.urlToImage && (<img src={noImage}/>)}
         </Col>
@@ -77,18 +77,18 @@ const ArticleForm = ({article, onSubmit}) => {
           <Form onSubmit={handleSubmit}>
             <TextField
               label={t('article:title.label')}
-              type="text"
+              type='text'
               placeholder={t('article:title.placeholder')}
-              name="title"
+              name='title'
               value={values.title}
               error={t(errors.title)}
               onChange={handleChange}
             />
             <TextField
               label={t('article:description.label')}
-              type="text"
+              type='text'
               placeholder={t('article:description.placeholder')}
-              name="description"
+              name='description'
               value={values.description}
               error={t(errors.description)}
               onChange={handleChange}
@@ -96,26 +96,26 @@ const ArticleForm = ({article, onSubmit}) => {
             <TextArea
               label={t('article:content.label')}
               placeholder={t('article:content.placeholder')}
-              name="content"
+              name='content'
               value={values.content}
               error={t(errors.content)}
               onChange={handleChange}
             />
             <DateInput
               label={t('article:publishedAt.label')}
-              name="publishedAt"
+              name='publishedAt'
               value={values.publishedAt}
               error={t(errors.publishedAt)}
               onChange={handleDateChange}
             />
             <FileInput
               label={t('article:image.label')}
-              name="image"
+              name='image'
               error={t(errors.image)}
               onChange={handleFileUpload}
             />
 
-            <Button type="submit" className="text-right" disabled={isSubmitting} >
+            <Button type='submit' className='text-right' disabled={isSubmitting} >
               {t(isSubmitting ? 'common:processing' : 'common:save')}
             </Button>
           </Form>

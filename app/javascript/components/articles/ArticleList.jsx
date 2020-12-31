@@ -1,19 +1,19 @@
 import React, {useCallback} from 'react'
 import { map } from 'lodash'
 import PropTypes from 'prop-types'
-import {useTranslation} from "react-i18next";
+import {useTranslation} from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import ArticleItem from "./ArticleItem";
+import ArticleItem from './ArticleItem';
 
-const ArticleList = ({articles, isEditable, handleMoreArticles}) => {
+const ArticleList = ({articles, isEditable, setCurrentPage}) => {
   const { t } = useTranslation('common')
 
   const onMoreArticles = useCallback(() => {
     setTimeout(() => {
-      handleMoreArticles()
+      setCurrentPage(currentPage => parseInt(currentPage)+1)
     }, 1500);
-  }, [handleMoreArticles])
+  }, [setCurrentPage])
 
   return (
     <div className='row'>
@@ -36,13 +36,13 @@ const ArticleList = ({articles, isEditable, handleMoreArticles}) => {
 ArticleList.propTypes = {
   articles: PropTypes.array,
   isEditable: PropTypes.bool,
-  handleMoreArticles: PropTypes.func,
+  setCurrentPage: PropTypes.func,
 }
 
 ArticleList.defaultProps = {
   articles: [],
   isEditable: false,
-  handleMoreArticles: () => {}
+  setCurrentPage: () => {}
 }
 
 export default ArticleList
