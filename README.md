@@ -3,7 +3,7 @@
 This is a sample blog using Rails, React and NewsAPI. This application is deployed to https://blog-challenge-to.herokuapp.com/
 
 ## Deploy
-This project is using Heroku to deploy.
+This project uses Heroku to deploy.
 
 For Ruby:
 
@@ -27,6 +27,8 @@ Copy `.env.example` to `.env` and replace the values
 run:
 `bundle install`
 `yarn install`
+`rails db:create`
+`rails db:migrate`
 
 ### Running
 Run `rails s` to see the application running at https://localhost:3000.
