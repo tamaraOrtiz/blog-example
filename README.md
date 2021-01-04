@@ -20,7 +20,7 @@ For React:
 2. Prettier check
 
 ## Setup:
-This project use the gem dotenv (https://github.com/bkeepers/dotenv) to configure the enviroment variables. Here you can see an example of the variables that you need: https://github.com/tamaraOrtiz/blog-example/blob/main/.env.example
+This project uses the gem dotenv (https://github.com/bkeepers/dotenv) to configure the enviroment variables. Here you can see an example of the variables that you need: https://github.com/tamaraOrtiz/blog-example/blob/main/.env.example
 
 Copy `.env.example` to `.env` and replace the values
 
