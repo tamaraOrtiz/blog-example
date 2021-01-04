@@ -25,18 +25,18 @@ This project use the gem dotenv (https://github.com/bkeepers/dotenv) to configur
 Copy `.env.example` to `.env` and replace the values
 
 run:
-`bundle install`
-`yarn install`
-`rails db:create`
-`rails db:migrate`
+1. `bundle install`
+2. `yarn install`
+3. `rails db:create`
+4. `rails db:migrate`
 
 ### Running
 Run `rails s` to see the application running at https://localhost:3000.
 
 ### Guard
-`rails_best_practices` to lint rails code
-`rubocop` to lint ruby code
-`bundle exec rspec` to run tests
+1. `rails_best_practices` to lint rails code
+2. `rubocop` to lint ruby code
+3. `bundle exec rspec` to run tests
 
 ### Populating database.
 We are using seed_migration gem.
