@@ -1,14 +1,45 @@
 # blog-example
-Ruby on Rails with React as frontend
 
-Demo: https://blog-challenge-to.herokuapp.com/
+This is a sample blog using Rails, React and NewsAPI. This application is deployed to https://blog-challenge-to.herokuapp.com/
 
-This project include:  
+## Deploy
+This project is using Heroku to deploy.
 
-    rails_best_practices
-    bullet
-    rubocop
-    ESLint
-    prettier
+For Ruby:
 
-Test run: bundle exec rspec
+1. Postgres installation
+2. Ruby and rails installation
+3. [rails_best_practices] (https://github.com/flyerhzm/rails_best_practices) - code metric tool to check the quality of Rails code.
+4. [bullet] (https://github.com/flyerhzm/bullet) - increase rails application's performance by reducing the number of queries it makes
+5. [rubocop] (https://github.com/rubocop-hq/rubocop) - Ruby static code analyzer and code formatter
+6. [Rspec] (https://github.com/rspec/rspec) - behavior driven development for ruby
+
+For React:
+
+1. ESLint check - javascript code linter
+2. Prettier check
+
+## Setup:
+This project use the gem dotenv (https://github.com/bkeepers/dotenv) to configure the enviroment variables. Here you can see an example of the variables that you need: https://github.com/tamaraOrtiz/blog-example/blob/main/.env.example
+
+Copy `.env.example` to `.env` and replace the values
+
+run:
+`bundle install`
+`yarn install`
+
+### Running
+Run `rails s` to see the application running at https://localhost:3000.
+
+### Guard
+`rails_best_practices` to lint rails code
+`rubocop` to lint ruby code
+`bundle exec rspec` to run tests
+
+### Populating database.
+We are using seed_migration gem.
+
+`rails seed:migrate`
+
+## Test enviroment
+Sign in with `test@email.com` / `Test122`
